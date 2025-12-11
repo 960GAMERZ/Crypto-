@@ -1,161 +1,182 @@
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>960gamerz — Demo</title>
-  <style>
-    :root{
-      --bg:#0f1724; --card:#0b1220; --accent:#ff4d4f; --muted:#9aa6b2;
-      --glass: rgba(255,255,255,0.03);
-    }
-    body{
-      margin:0; font-family:Inter, system-ui, Arial; background:linear-gradient(180deg,#071021 0%,#0f1724 100%); color:#e6eef6;
-      min-height:100vh; display:flex; flex-direction:column;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate - Support My Work</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #F0B90B; /* BNB Yellow Color */
+            --bg-dark: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.6);
+            --text-light: #ffffff;
+            --text-gray: #94a3b8;
+        }
 
-    /* Top bar & three-dot menu (left) */
-    .topbar{
-      display:flex; align-items:center; gap:12px; padding:12px 16px;
-    }
-    .menu-left{
-      position:relative;
-    }
-    .dots-btn{
-      width:40px; height:40px; display:flex; align-items:center; justify-content:center;
-      background:var(--glass); border-radius:10px; cursor:pointer; border:1px solid rgba(255,255,255,0.04);
-    }
-    .menu-panel{
-      position:absolute; left:0; top:48px; background:var(--card); border-radius:8px; padding:8px 6px;
-      box-shadow:0 6px 20px rgba(2,6,23,0.6); min-width:200px; display:none;
-      z-index:50;
-    }
-    .menu-panel a{
-      display:block; padding:8px 10px; color:inherit; text-decoration:none; border-radius:6px; font-size:14px;
-    }
-    .menu-panel a:hover{ background:rgba(255,255,255,0.02); }
+        body {
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #0f172a 0%, #000000 100%);
+            color: var(--text-light);
+            font-family: 'Outfit', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-    /* Main card */
-    .container{ flex:1; display:flex; align-items:center; justify-content:center; padding:28px; }
-    .card{
-      width:100%; max-width:980px; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border-radius:12px; padding:22px; box-shadow:0 10px 30px rgba(2,6,23,0.5); border:1px solid rgba(255,255,255,0.03);
-    }
+        .donation-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 40px;
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
 
-    /* Donate area */
-    .donate-row{ display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-top:6px; }
-    .amount-input{
-      display:flex; gap:8px; align-items:center;
-    }
-    input[type="number"]{
-      width:150px; padding:10px 12px; border-radius:8px; border:1px solid rgba(255,255,255,0.06); background:transparent; color:inherit;
-      font-size:15px;
-    }
-    .preset {
-      padding:8px 10px; border-radius:8px; cursor:pointer; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.03);
-      font-size:14px;
-    }
-    .donate-btn{
-      padding:10px 16px; border-radius:10px; cursor:pointer; border:0; background:var(--accent); color:white;
-      font-weight:600; font-size:15px;
-    }
-    .muted{ color:var(--muted); font-size:14px; margin-top:8px; }
+        h2 { margin-bottom: 5px; font-weight: 700; }
+        p.subtitle { color: var(--text-gray); font-size: 0.9rem; margin-bottom: 30px; }
 
-    /* Footer social icons center */
-    .footer{
-      padding:18px 8px; display:flex; align-items:center; justify-content:center;
-    }
-    .socials{ display:flex; gap:16px; }
-    .socials a{ display:inline-flex; align-items:center; justify-content:center; width:44px; height:44px; border-radius:8px; background:var(--glass); text-decoration:none; color:inherit; border:1px solid rgba(255,255,255,0.03); }
-    .socials svg{ width:20px; height:20px; }
+        /* QR Code Section */
+        .qr-container {
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            display: inline-block;
+            margin-bottom: 20px;
+            box-shadow: 0 0 20px rgba(240, 185, 11, 0.2);
+        }
 
-    /* small */
-    @media(max-width:520px){
-      input[type="number"]{ width:120px; }
-      .card{ padding:16px; }
-    }
-  </style>
+        .qr-container img {
+            width: 160px;
+            height: 160px;
+            display: block;
+        }
+
+        .network-badge {
+            background: rgba(240, 185, 11, 0.15);
+            color: var(--primary);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+            border: 1px solid rgba(240, 185, 11, 0.3);
+        }
+
+        /* Address Box */
+        .address-box {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .crypto-address {
+            font-family: monospace;
+            color: var(--text-gray);
+            font-size: 0.85rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .copy-btn {
+            background: var(--primary);
+            border: none;
+            color: black;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+        }
+
+        .copy-btn:active { transform: scale(0.95); }
+
+        /* Divider */
+        .divider {
+            display: flex;
+            align-items: center;
+            color: var(--text-gray);
+            font-size: 0.8rem;
+            margin: 20px 0;
+        }
+        .divider::before, .divider::after {
+            content: ""; flex: 1; border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .divider span { padding: 0 10px; }
+
+        /* NowPayments Button Style */
+        .np-button-container {
+            transition: transform 0.2s;
+        }
+        .np-button-container:hover {
+            transform: translateY(-2px);
+        }
+    </style>
 </head>
 <body>
 
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>960gamerz — Demo</title>
-  <style>
-    :root{
-      --bg:#0f1724; --card:#0b1220; --accent:#ff4d4f; --muted:#9aa6b2;
-      --glass: rgba(255,255,255,0.03);
-    }
-    body{
-      margin:0; font-family:Inter, system-ui, Arial; background:linear-gradient(180deg,#071021 0%,#0f1724 100%); color:#e6eef6;
-      min-height:100vh; display:flex; flex-direction:column;
-    }
+    <div class="donation-card">
+        <h2>Support via Crypto</h2>
+        <p class="subtitle">Secure, fast, and private donations.</p>
 
-    /* Top bar & three-dot menu (left) */
-    .topbar{
-      display:flex; align-items:center; gap:12px; padding:12px 16px;
-    }
-    .menu-left{
-      position:relative;
-    }
-    .dots-btn{
-      width:40px; height:40px; display:flex; align-items:center; justify-content:center;
-      background:var(--glass); border-radius:10px; cursor:pointer; border:1px solid rgba(255,255,255,0.04);
-    }
-    .menu-panel{
-      position:absolute; left:0; top:48px; background:var(--card); border-radius:8px; padding:8px 6px;
-      box-shadow:0 6px 20px rgba(2,6,23,0.6); min-width:200px; display:none;
-      z-index:50;
-    }
-    .menu-panel a{
-      display:block; padding:8px 10px; color:inherit; text-decoration:none; border-radius:6px; font-size:14px;
-    }
-    .menu-panel a:hover{ background:rgba(255,255,255,0.02); }
+        <div class="qr-container">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=0xAbCA8c792e109FE40BBB494Ab67127CCd542f6Dd" alt="Donate QR">
+        </div>
+        
+        <br>
+        <span class="network-badge">
+            <i class="fa-solid fa-bolt"></i> USDT (BEP20 / BNB Chain)
+        </span>
 
-    /* Main card */
-    .container{ flex:1; display:flex; align-items:center; justify-content:center; padding:28px; }
-    .card{
-      width:100%; max-width:980px; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border-radius:12px; padding:22px; box-shadow:0 10px 30px rgba(2,6,23,0.5); border:1px solid rgba(255,255,255,0.03);
-    }
+        <div class="address-box">
+            <span class="crypto-address" id="wallet-address">0xAbCA8c792e109FE40BBB494Ab67127CCd542f6Dd</span>
+            <button class="copy-btn" onclick="copyAddress()">
+                COPY
+            </button>
+        </div>
 
-    /* Donate area */
-    .donate-row{ display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-top:6px; }
-    .amount-input{
-      display:flex; gap:8px; align-items:center;
-    }
-    input[type="number"]{
-      width:150px; padding:10px 12px; border-radius:8px; border:1px solid rgba(255,255,255,0.06); background:transparent; color:inherit;
-      font-size:15px;
-    }
-    .preset {
-      padding:8px 10px; border-radius:8px; cursor:pointer; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.03);
-      font-size:14px;
-    }
-    .donate-btn{
-      padding:10px 16px; border-radius:10px; cursor:pointer; border:0; background:var(--accent); color:white;
-      font-weight:600; font-size:15px;
-    }
-    .muted{ color:var(--muted); font-size:14px; margin-top:8px; }
+        <div class="divider"><span>OR CLICK TO DONATE</span></div>
 
-    /* Footer social icons center */
-    .footer{
-      padding:18px 8px; display:flex; align-items:center; justify-content:center;
-    }
-    .socials{ display:flex; gap:16px; }
-    .socials a{ display:inline-flex; align-items:center; justify-content:center; width:44px; height:44px; border-radius:8px; background:var(--glass); text-decoration:none; color:inherit; border:1px solid rgba(255,255,255,0.03); }
-    .socials svg{ width:20px; height:20px; }
+        <div class="np-button-container">
+            <a href="https://nowpayments.io/donation?api_key=ca332f31-f32f-479d-b9ca-2f1ac981cfc2" target="_blank" rel="noreferrer noopener">
+                <img src="https://nowpayments.io/images/embeds/donation-button-white.svg" alt="Donate Button" style="width: 200px;">
+            </a>
+        </div>
+    </div>
 
-    /* small */
-    @media(max-width:520px){
-      input[type="number"]{ width:120px; }
-      .card{ padding:16px; }
-    }
-  </style>
-</head>
+    <script>
+        function copyAddress() {
+            var copyText = document.getElementById("wallet-address").innerText;
+            navigator.clipboard.writeText(copyText);
+            
+            // Button text change effect
+            var btn = document.querySelector('.copy-btn');
+            var originalText = btn.innerText;
+            btn.innerText = "COPIED!";
+            btn.style.backgroundColor = "#4ade80"; // Green color
+            
+            setTimeout(function(){ 
+                btn.innerText = originalText;
+                btn.style.backgroundColor = "#F0B90B"; // Back to yellow
+            }, 2000);
+        }
+    </script>
+
+</body>
 </html>
-
